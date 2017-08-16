@@ -24,7 +24,6 @@
   "devDependencies": {
     "express-handlebars": "^3.0.0",
     "nodemon": "^1.11.0",
-    "shot": "^3.4.2",
     "tap-spec": "^4.1.1",
     "tape": "^4.8.0"
   }
