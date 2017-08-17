@@ -13,7 +13,7 @@ Founders and Coders is an amazing course that is continually growing and develop
 ### MVP :sparkles: 
  * Users can Login.
  * Users can see all the workshops from a given week, split by date/day.
- * Users can give immediate feedback on a rating scale out of 5 to workshops annonymously.
+ * Users can annonymously give feedback to workshops out of 5.
  * Once users give feedback, only then can they see the average feedback rating. 
 
 ### Stretch Goals :runner: 
@@ -86,4 +86,5 @@ Founders and Coders is an amazing course that is continually growing and develop
 * **flash**: displays messages onscreen, e.g. error messages and confirmations
 * **express-session**: manages session and setting cookie. *It works well with passport*
 * **passport**: manages logins. *Use* `passport-local` *to deal with local DB sign-ups*
+
 
