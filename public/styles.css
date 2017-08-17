@@ -1,0 +1,19 @@
+/*header*/
+.header__title, .header__item {
+  display: inline;
+}
+
+.header__item {
+  float: right;
+}
+
+
+/*footer*/
+
+.footer__container {
+  margin: auto;
+}
+.footer__a, .footer__p {
+    display: inline;
+    margin: auto;
+}
