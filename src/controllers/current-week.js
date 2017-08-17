@@ -6,11 +6,11 @@ exports.getCurrentWeek = (req,res) => {
   get.dataWeek('14-08-2017',(err, resDataWeek)=>{
     // console.log(resDataWeek);
     const workshopArray = extractWorkshops(resDataWeek);
-    console.log(workshopArray);
+    // console.log(workshopArray);
     get.dataVotes(1 , (err, resDataVotes)=> {
       // console.log(resDataVotes)
 
-      res.render('current-week', {workshopArray: workshopArray});
+      res.render('current-week', {monday: workshopArray[0], tuesday: workshopArray[1], wednesday: workshopArray[2]});
     });
 
   })

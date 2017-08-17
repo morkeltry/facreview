@@ -1,8 +1,47 @@
 <h1>Current Week</h1>
 
-{{#each workshopArray}}
-  {{#each this}}
-    <h1>{{this.title}}</h1>
-  {{/each}}
-{{/each}}
+
+<section>
+  <h2>Monday</h2>
+    {{#each monday}}
+    <article class="">
+      <a href="{{this.gh_link}}"><h3>{{this.title}}</h3></a>
+      <p>Cohort Feel: {{this.avg_review}}</p>
+      <form class="" action="/post-review" method="post">
+        <input type="hidden" name="{{this.id}}" value="{{this.id}}"/>
+        <label for="rating">My rating: </label>
+        <input name="rating" id="say" value="">
+      </form>
+      {{/each}}
+    </article>
+</section>
+
+<section>
+  <h2>Tuesday</h2>
+    {{#each tuesday}}
+    <article class="">
+      <a href="{{this.gh_link}}"><h3>{{this.title}}</h3></a>
+      <p>Cohort Feel: {{this.avg_review}}</p>
+      <form class="" action="/post-review" method="post">
+        <input type="hidden" name="{{this.id}}" value="{{this.id}}"/>
+        <label for="rating">My rating: </label>
+        <input name="rating" id="say" value="">
+      </form>
+    {{/each}}
+</section>
+
+<section>
+  <h2>Wednesday</h2>
+    {{#each wednesday}}
+    <article class="">
+      <a href="{{this.gh_link}}"><h3>{{this.title}}</h3></a>
+      <p>Cohort Feel: {{this.avg_review}}</p>
+      <form class="" action="/post-review" method="post">
+        <input type="hidden" name="{{this.id}}" value="{{this.id}}"/>
+        <label for="rating">My rating: </label>
+        <input name="rating" id="say" value="">
+      </form>
+    {{/each}}
+</section>
+
 <!-- <p>node week is great :D</p> -->
