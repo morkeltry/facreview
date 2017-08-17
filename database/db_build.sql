@@ -22,8 +22,8 @@ CREATE TABLE workshops (
 );
 CREATE TABLE comments (
  id SERIAL PRIMARY KEY,
- ws_id INTEGER REFERENCES workshop(id),
- post VARCHAR(200) NOT NULL,
+ ws_id INTEGER REFERENCES workshops(id),
+ post VARCHAR(200) NOT NULL
 );
 
 CREATE TABLE reviews (
