@@ -20,7 +20,7 @@ const extractWorkshops = (arr) => {
     }
     return acc
 }, [[],[],[]])
-  // console.log(finalArray);
+  return finalArray
 };
 
 

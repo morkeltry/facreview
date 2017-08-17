@@ -1,3 +1,8 @@
 <h1>Current Week</h1>
 
-<p>node week is great :D</p>
+{{#each workshopArray}}
+  {{#each this}}
+    <h1>{{this.title}}</h1>
+  {{/each}}
+{{/each}}
+<!-- <p>node week is great :D</p> -->
