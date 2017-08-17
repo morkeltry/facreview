@@ -25,6 +25,4 @@ get.dataVotes = (user_id, callback) => {
   });
 };
 
-// get.dataWeek('14-08-2017', (err, res)=>{console.log(res)});
-// get.data('users', (err, res)=>{console.log(res)});
 module.exports = get;
