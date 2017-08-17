@@ -18,6 +18,7 @@ post.users = (name, email, pw, avatar, callback) => {
 
 post.reviews = (ws_id, review_value, callback) => {
   const sqlQuery = `
+  
     INSERT INTO reviews (ws_id, review_value)
     VALUES ($1, $2);
   `;
