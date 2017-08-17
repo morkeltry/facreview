@@ -3,7 +3,7 @@ const path = require('path');
 //const favicon = require('serve-favicon');
 const exphbs = require('express-handlebars');
 
-// const controllers = require('./controllers/index');
+const controllers = require('./controllers/index');
 // import helpers
 //const helpers = require('./views/helpers/index');
 
@@ -26,7 +26,7 @@ app.set('port', process.env.PORT || 9000);
 //app.use(favicon(path.join(__dirname, '..', 'public', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
-//app.use(controllers);
+app.use(controllers);
 
 module.exports = app;
 // app.listen(7000,()=>{
