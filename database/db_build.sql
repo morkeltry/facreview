@@ -7,8 +7,8 @@ CREATE TABLE users (
     name VARCHAR(100) NOT NULL,
     email VARCHAR(300) UNIQUE NOT NULL,
     pw VARCHAR(100) NOT NULL,
-    admin BOOLEAN,
-    avatar VARCHAR(20)
+    admin BOOLEAN DEFAULT false,
+    avatar VARCHAR(20) NOT NULL
 
 );
 
@@ -20,13 +20,12 @@ CREATE TABLE workshops (
     gh_link VARCHAR(200)
 
 );
---CREATE TABLE comment (
---  id SERIAL PRIMARY KEY,
---  user_id INTEGER REFERENCES users(id),
---  comment VARCHAR(200) NOT NULL,
---  date DATE NOT NULL
---);
---
+CREATE TABLE comments (
+ id SERIAL PRIMARY KEY,
+ ws_id INTEGER REFERENCES workshop(id),
+ post VARCHAR(200) NOT NULL,
+);
+
 CREATE TABLE reviews (
   id SERIAL PRIMARY KEY,
   ws_id INTEGER REFERENCES workshops(id),
@@ -34,7 +33,6 @@ CREATE TABLE reviews (
 );
 
 CREATE TABLE votes (
-  id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users(id),
   ws_id INTEGER REFERENCES workshops(id)
 );
@@ -43,12 +41,12 @@ INSERT INTO users (name,email,pw,admin,avatar) VALUES
   ('Yahia','yahia@fac.com','test','false','avatar2.jpg' ) ;
 
 INSERT INTO workshops (title,date,gh_link) VALUES
-  ('Introduction To Express','2017-08-14','www.hi.com'),
-  ('Express-workshop','2017-08-14','www.hi.com'),
-  ('Handlebars','2017-08-14','www.hi.com'),
-  ('CSS Morning Challenge','2017-08-15','www.hi.com'),
-  ('TDD Express','2017-08-15','www.hi.com'),
-  ('Express-handlebars Morning Challenge','2017-08-16','www.bye.com');
+  ('Introduction To Express','2017-08-14','https://github.com/foundersandcoders/introduction-to-express'),
+  ('Express-workshop','2017-08-14','https://github.com/foundersandcoders/express-workshop'),
+  ('Handlebars','2017-08-14','https://github.com/foundersandcoders/express-handlebars-workshop'),
+  ('CSS Morning Challenge','2017-08-15','https://github.com/Akin909/morning-challenge-animated-app-drawer'),
+  ('TDD Express','2017-08-15','https://github.com/Akin909/express-and-testing-workshop'),
+  ('Express-handlebars Morning Challenge','2017-08-16','https://github.com/foundersandcoders/express-handlebars-challenge');
 
 INSERT INTO reviews (ws_id, review_value) VALUES
   (1, 4),
