@@ -8,10 +8,8 @@ const extractWorkshops = (arr) => {
 
   const dateArray = arr.reduce((acc,element)=>{
     if (acc.indexOf(element.date.toISOString()) === -1) {
-      acc.push(element.date.toISOString());
-      console.log('in the if?')
+      acc.push(element.date.toISOString());  
     }
-    console.log(acc)
       return acc;
   },[])
 
