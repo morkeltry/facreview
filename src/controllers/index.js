@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 
-// import home route controller
 const home = require('./home');
 const currentWeek = require('./current-week');
 // const postLogin = require('./login');
@@ -10,8 +9,8 @@ const currentWeek = require('./current-week');
 // const postReview = require('./post-review');
 const error = require('./error');
 
-// add home route
-router.get('/', home.get); //all handlers are here, this happens after your index.js
+
+router.get('/', home.get);
 // router.post('/login', postLogin.post);
 // router.post('/logout', postLogout.post);
 // router.post('/post-review', postReview.post);
