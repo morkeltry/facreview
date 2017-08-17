@@ -1,25 +1,15 @@
 <!DOCTYPE html>
-<html>
-
-<!--Syntax for partial-->
-{{>htmlHead}}
-
-
+<html lang="en">
+{{> htmlHead}}
 <body>
 
-{{>header}}
+{{> header}}
 
+{{{body}}}
 
-<main class="main">
-    <!--This prevents escaping so that we can get tags in-->
-    {{{body}}}
-</main>
+{{> footer}}
 
-
-{{>footer}}
-
-
-<script src="/js/main.js"></script>
+  <script src="/js/main.js"></script>
 
 </body>
 </html>
