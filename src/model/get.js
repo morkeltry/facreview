@@ -1,20 +1,20 @@
-const connect = require('./db-connect');
+const connect = require('./db_connection');
 
 const get = {};
 
-get.fruit = callback => {
+get.data = (table, callback) => {
   const sqlQuery = `
     SELECT *
-      FROM fruit
-    ORDER BY fruit.id DESC;
+      FROM ${table}
   `;
 
   connect.query(sqlQuery, (err, response) => {
     if (err) {
-      return callback(new Error('Database error while fetching fruits'));
+      return callback(new Error(`Database error while fetching ${table}`));
     }
     callback(null, response.rows);
   });
 };
 
+// get.data('users', (err, res)=>{console.log(res)});
 module.exports = get;
