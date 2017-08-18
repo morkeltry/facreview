@@ -24,6 +24,7 @@ header{
 
 .footer__container {
   margin: auto;
+  padding: 3rem 0;
 }
 .footer__a, .footer__p {
     display: inline;
@@ -128,4 +129,19 @@ label img{
 .header__avatar {
     height: 50px;
     width: 50px;
+}
+
+.workshop__title, .workshop__feels, .workshop__form {
+  display: inline;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+/*.workshop__form {
+  position: relative;
+  float: right;
+}*/
+.workshop {
+  width: 85vw;
+  margin: auto;
 }
