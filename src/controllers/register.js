@@ -14,7 +14,7 @@
    req.checkBody('email', 'Email is not valid').isEmail();
    req.checkBody('password', 'Password is required').notEmpty();
    req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
-  re.checkBody('avatar', 'Avatar is not empty').notEmpty();
+  req.checkBody('avatar', 'Avatar is not empty').notEmpty();
    const errors = req.validationErrors();
    // if errors send an error and go to the sign up page again
    if (errors) {
