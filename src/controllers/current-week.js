@@ -1,3 +1,4 @@
+// Render current week - will check if authenticated first
 const session = require('express-session');
 
 exports.get = (req, res) => {

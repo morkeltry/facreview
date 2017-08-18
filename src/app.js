@@ -13,12 +13,12 @@ const LocalStrategy = require('passport-local').Strategy;
 const controllers = require('./controllers/index');
 // import helpers
 // const helpers = require('./views/helpers/index');
-const User = require('./model/user');
-const getUser = require('./model/get-user-data');
+const User = require('./model/passwordCompare');
+const getUser = require('./model/getUserData');
 
-
+// Set up express
 const app = express();
-
+// Set up handle bars
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.engine(
@@ -31,18 +31,20 @@ app.engine(
     //helpers: helpers,
   }),
 );
+// Set up JSON parse to be able to parse cookies and other session related activities
 
-// this is the middleware that parses the cookies
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false,
 }));
+// Cookie middleware(not used)
 app.use(cookieParser());
 
 
-// this is the middleware for express-session
+// express-session - session middleware that sets up session and cookie.
+// Will check for authentication automatically
 app.use(session({
-  secret: 'bella is a good dog',
+  secret: process.env.SECRET,
   saveUninitialized: false,
   resave: false,
   // cookie: { maxAge: 0 },
@@ -51,14 +53,20 @@ app.use(session({
 
 
 // Passport initialiser (it works with session)
+// Start passport up and create a session for it - this is for authentication when logged in
+// This will then need to be serialized
 app.use(passport.initialize());
 app.use(passport.session());
+// Set up flash to display error and success messages
 app.use(flash());
-// more Passport stuff
+// Create empty userObject for use later
 let userObj = {};
 
+// Start local strategy for local db login system
 passport.use(new LocalStrategy(
+    // Default params for passport
     (username, password, done) => {
+      // First check if email, flash message if there is an error
       getUser.email(username, (err, userObject) => {
         if (err) { return done(err); }
         if (!userObject) {
@@ -66,6 +74,7 @@ passport.use(new LocalStrategy(
             message: 'Unknown Email',
           });
         }
+        // Once checked email exists compare password by hashing(async)
         userObj = userObject;
         User.comparePassword(password, userObject.pw, (err, isMatch) => {
           if (err) { return done(err); }
@@ -81,13 +90,16 @@ passport.use(new LocalStrategy(
         });
       });
     }));
-
+// Post login form via 'local' strategy
+// Must come right after the passport is used
+// Authenticate or redirect
+// Display flash message for failure
 app.post('/login',
     passport.authenticate('local',
         { successRedirect: '/current-week', failureRedirect: '/', failureFlash: true },
     ));
 
-
+// User needs to be de/serialized to cooke, this can be used to pull ID for person currently in session
 passport.serializeUser((userObj, done) => {
   console.log('userobj', userObj);
   done(null, userObj.id);
@@ -99,7 +111,7 @@ passport.deserializeUser((id, done) => {
   })
     ;
 });
-// express validator
+// express validator - set up with basic params
 app.use(expressValidator({
   errorFormatter(param, msg, value) {
     const namespace = param.split('.'),

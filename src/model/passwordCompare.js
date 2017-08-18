@@ -1,19 +1,6 @@
 const bcrypt = require('bcryptjs');
-const post = require('./post');
+const post = require('./postUserDetails');
 const connect = require('./db_connection');
-
-exports.createUser = (newUser, callback) => {
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(newUser.password, salt, (err, hash)=> {
-      newUser.password = hash;
-      newUser.post.users(newUser.name, newUser.email, newUser.password, newUser.avatar, callback);
-    });
-  });
-};
-
-// exports.getUserByEmail = () => {
-//
-// };
 
 exports.comparePassword = (candidatePassword, hash, callback) => {
 

@@ -17,6 +17,7 @@ const register = require('./register')
 // const postReview = require('./post-review');
 const error = require('./error');
 
+// Two functions to check authentication
 const ensureAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
