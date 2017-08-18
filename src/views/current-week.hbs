@@ -3,18 +3,18 @@
 <section>
   <h2>Monday</h2>
     {{#each monday}}
-    <article class="">
-      <a href="{{this.gh_link}}"><h3>{{this.title}}</h3></a>
-      <p>Cohort Feel: {{this.avg_review}}</p>
-      <form class="" action="/post-review" method="post">
+    <article class="workshop">
+      <a href="{{this.gh_link}}"><h3 class="workshop__title">{{this.title}}</h3></a>
+      <p class="workshop__feels">Cohort Feel: {{this.avg_review}}</p>
+      <form class="workshop__form" action="/post-review" method="post">
         <input type="hidden" name="{{this.id}}" value="{{this.id}}"/>
-        <label for="rating">My rating: </label>
-        <input type="radio" name="rating" value="1" checked>1
-        <input type="radio" name="rating" value="2"> 2
-        <input type="radio" name="rating" value="3"> 3
-        <input type="radio" name="rating" value="4"> 4
-        <input type="radio" name="rating" value="5"> 5
-        <button type="submit" name="login-submit">Submit</button>
+        <label class="workshop__label" for="rating">My rating: </label>
+        <input class="workshop__radio" type="radio" name="rating" value="1" checked>1
+        <input class="workshop__radio" type="radio" name="rating" value="2"> 2
+        <input class="workshop__radio" type="radio" name="rating" value="3"> 3
+        <input class="workshop__radio" type="radio" name="rating" value="4"> 4
+        <input class="workshop__radio" type="radio" name="rating" value="5"> 5
+        <button class="workshop__radio" type="submit" name="login-submit">Submit</button>
       </form>
     </article>
       {{/each}}
@@ -23,18 +23,18 @@
 <section>
   <h2>Tuesday</h2>
     {{#each tuesday}}
-    <article class="">
-      <a href="{{this.gh_link}}"><h3>{{this.title}}</h3></a>
-      <p>Cohort Feel: {{this.avg_review}}</p>
-      <form class="" action="/post-review" method="post">
+    <article class="workshop">
+      <a href="{{this.gh_link}}"><h3 class="workshop__title">{{this.title}}</h3></a>
+      <p class="workshop__feels">Cohort Feel: {{this.avg_review}}</p>
+      <form class="workshop__form" action="/post-review" method="post">
         <input type="hidden" name="{{this.id}}" value="{{this.id}}"/>
-        <label for="rating">My rating: </label>
-        <input type="radio" name="rating" value="1" checked>1
-        <input type="radio" name="rating" value="2"> 2
-        <input type="radio" name="rating" value="3"> 3
-        <input type="radio" name="rating" value="4"> 4
-        <input type="radio" name="rating" value="5"> 5
-        <button type="submit" name="login-submit">Submit</button>
+        <label class="workshop__label" for="rating">My rating: </label>
+        <input class="workshop__radio" type="radio" name="rating" value="1" checked>1
+        <input class="workshop__radio" type="radio" name="rating" value="2"> 2
+        <input class="workshop__radio" type="radio" name="rating" value="3"> 3
+        <input class="workshop__radio" type="radio" name="rating" value="4"> 4
+        <input class="workshop__radio" type="radio" name="rating" value="5"> 5
+        <button class="workshop__radio" type="submit" name="login-submit">Submit</button>
       </form>
     </article>
     {{/each}}
@@ -43,20 +43,19 @@
 <section>
   <h2>Wednesday</h2>
     {{#each wednesday}}
-    <article class="">
-      <a href="{{this.gh_link}}"><h3>{{this.title}}</h3></a>
-      <p>Cohort Feel: {{this.avg_review}}</p>
-      <form class="" action="/post-review" method="post">
+    <article class="workshop">
+      <a href="{{this.gh_link}}"><h3 class="workshop__title">{{this.title}}</h3></a>
+      <p class="workshop__feels">Cohort Feel: {{this.avg_review}}</p>
+      <form class="workshop__form" action="/post-review" method="post">
         <input type="hidden" name="{{this.id}}" value="{{this.id}}"/>
-        <label for="rating">My rating: </label>
-        <input type="radio" name="rating" value="1" checked>1
-        <input type="radio" name="rating" value="2"> 2
-        <input type="radio" name="rating" value="3"> 3
-        <input type="radio" name="rating" value="4"> 4
-        <input type="radio" name="rating" value="5"> 5
-        <button type="submit" name="login-submit">Submit</button>
+        <label class="workshop__label" for="rating">My rating: </label>
+        <input class="workshop__radio" type="radio" name="rating" value="1" checked>1
+        <input class="workshop__radio" type="radio" name="rating" value="2"> 2
+        <input class="workshop__radio" type="radio" name="rating" value="3"> 3
+        <input class="workshop__radio" type="radio" name="rating" value="4"> 4
+        <input class="workshop__radio" type="radio" name="rating" value="5"> 5
+        <button class="workshop__radio" type="submit" name="login-submit">Submit</button>
       </form>
     </article>
       {{/each}}
   </section>
-
