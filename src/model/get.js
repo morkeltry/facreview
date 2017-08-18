@@ -1,5 +1,6 @@
 const connect = require('./db_connection');
 const getWednesdayDate = require('../controllers/logic/getWednesdayDate');
+
 const get = {};
 
 get.dataWeek = (date, callback) => {
