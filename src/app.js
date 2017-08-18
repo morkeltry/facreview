@@ -29,13 +29,13 @@ app.engine(
     partialsDir: path.join(__dirname, 'views', 'partials'),
     defaultLayout: 'main',
     //helpers: helpers,
-  })
+  }),
 );
 
 // this is the middleware that parses the cookies
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: false
+  extended: false,
 }));
 app.use(cookieParser());
 
@@ -45,93 +45,80 @@ app.use(session({
   secret: 'bella is a good dog',
   saveUninitialized: false,
   resave: false,
+  // cookie: { maxAge: 0 },
 }));
+
+
 
 // Passport initialiser (it works with session)
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 // more Passport stuff
 let userObj = {};
-passport.use(new LocalStrategy(
-  (username, password, done) => {
-    getUser.data(username, (err, userObject) => {
-      if (err) { return done(err); }
-      if (!userObject) {
-        return done(null, false, {
-          message: 'Unknown Email'
-        })
-      }
-      userObj = userObject;
-      User.comparePassword(password, userObject.pw, (err, isMatch) => {
-        if (err) { return done(err); }
-        if (isMatch) {
-          console.log('is a match');
-          return done(null, true);
-        } else {
-          console.log('is not a match');
-          return done(null, false, {
-            message: 'Invalid password'
-          });
-        }
-      });
-    });
-  }));
 
-  passport.use(new LocalStrategy(
+passport.use(new LocalStrategy(
     (username, password, done) => {
-      getUser.data(username, (err, userObject) => {
+      getUser.email(username, (err, userObject) => {
         if (err) { return done(err); }
         if (!userObject) {
           return done(null, false, {
-            message: 'Unknown Email'
-          })
+            message: 'Unknown Email',
+          });
         }
         userObj = userObject;
         User.comparePassword(password, userObject.pw, (err, isMatch) => {
           if (err) { return done(err); }
           if (isMatch) {
             console.log('is a match');
-            return done(null, true);
-          } else {
-            console.log('is not a match');
-            return done(null, false, {
-              message: 'Invalid password'
-            });
+
+            return done(null, userObj);
           }
+          console.log('is not a match');
+          return done(null, false, {
+            message: 'Invalid password',
+          });
         });
       });
     }));
-console.log(userObj);
-// passport.serializeUser((userObj, done) => {
-//   console.log('user serialized');
-//   return done(null, userObj.id)
-// });
 
-// passport.serialiseUser((userObj, done) => {
-//   done(null, userObj.id)
-// });
+app.post('/login',
+    passport.authenticate('local',
+        { successRedirect: '/current-week', failureRedirect: '/', failureFlash: true },
+    ));
 
+
+passport.serializeUser((userObj, done) => {
+  console.log('userobj', userObj);
+  done(null, userObj.id);
+});
+passport.deserializeUser((id, done) => {
+  getUser.id(id, (err, userId) => {
+    if (err) { throw err; }
+    done(err, userId);
+  })
+    ;
+});
 // express validator
 app.use(expressValidator({
-  errorFormatter: function(param, msg, value) {
+  errorFormatter(param, msg, value) {
     const namespace = param.split('.'),
       root = namespace.shift(),
       formParam = root;
     while (namespace.length) {
-      formParam += '[' + namespace.shift() + ']';
+      formParam += `[${namespace.shift()}]`;
     }
     return {
       param: formParam,
-      msg: msg,
-      value: value
+      msg,
+      value,
     };
-  }
+  },
 }));
 
-app.use(flash());
 
 // global variables for flash
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
@@ -139,7 +126,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-//app.use(favicon(path.join(__dirname, '..', 'public', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, '..', 'public', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(controllers);
 

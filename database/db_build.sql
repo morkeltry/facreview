@@ -8,7 +8,7 @@ CREATE TABLE users (
     email VARCHAR(300) UNIQUE NOT NULL,
     pw VARCHAR(100) NOT NULL,
     admin BOOLEAN DEFAULT false,
-    avatar VARCHAR(20) NOT NULL
+    avatar VARCHAR(50) NOT NULL
 
 );
 

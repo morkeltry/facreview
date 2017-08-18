@@ -1,9 +1,44 @@
 <header class="header">
-      <ul class="header__list">
-        <li class="header__title">FAC*</li>
-          <!-- if statement/helper to check for cookie-->
-        <li class="header__item"><button type="button" name="logout">Logout</button></li>
-        <li class="header__item"><img class="header__avatar" src="{{user.avatar}}" alt="Your picture!"/></li>
-        <li class="header__item">Welcome {{user.name}}!</li>
-      </ul>
+
+    <div class="header_title">
+        <h1>FAC*</h1>
+    </div>
+{{#if user}}
+    <div class="header-user">
+        <ul>
+            <li class="header__item"><img class="header__avatar" src="{{user.avatar}}" alt="Your picture!"/></li>
+            <li class="header__item">Welcome {{user.name}}!</li>
+        </ul>
+    </div>
+{{/if}}
+
+
+    <div class="header-links">
+        <ul class="header__list">
+            {{#if user}}
+                <li role="presentation"><a href="/current-week">Current Week View</a></li>
+                <li role="presentation"><a href="/logout">Logout</a></li>
+            {{else}}
+                <li role="presentation"><a href="/">Login</a></li>
+                <li role="presentation"><a href="/signup">Sign-Up</a></li>
+            {{/if}}
+
+        </ul>
+
+    </div>
+    <div>
+        {{#if success_msg}}
+            <div class="alert alert-success">{{success_msg}}</div>
+        {{/if}}
+
+        {{#if error_msg}}
+            <div class="alert alert-danger">{{error_msg}}</div>
+        {{/if}}
+
+        {{#if error}}
+            <div class="alert alert-danger">{{error}}</div>
+        {{/if}}
+
+    </div>
+
 </header>
