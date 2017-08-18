@@ -5,14 +5,15 @@ const router = express.Router();
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
-// import home route controller
 const home = require('./home');
 const currentWeek = require('./current-week');
+
 const logout = require('./logout');
 const signup = require('./signup');
-const register = require('./register')
-// const User = require('../model/user');
-// const getUser = require('../model/get-user-email');
+const register = require('./register');
+
+const postLogin = require('./login');
+
 // const postLogout = require('./logout');
 // const postReview = require('./post-review');
 const error = require('./error');
@@ -41,6 +42,7 @@ router.get('/current-week', ensureAuthenticated, currentWeek.get);
 router.get('/logout', logout.get);
 router.get('/signup', signup.get);
 router.post('/register', register.post);
+
 router.use(error.client);
 router.use(error.server);
 

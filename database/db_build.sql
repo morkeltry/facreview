@@ -1,6 +1,8 @@
 BEGIN;
 
+
 DROP TABLE IF EXISTS users, workshops, reviews, votes, comments CASCADE;
+
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
