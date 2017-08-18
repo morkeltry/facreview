@@ -1,14 +1,16 @@
 const connect = require('./db_connection');
+const bcrypt = require('bcryptjs');
 
 const post = {};
 
 post.users = (name, email, pw, avatar, callback) => {
+  console.log("pw is :",pw)
   const sqlQuery = `
     INSERT INTO users (name, email, pw, avatar)
     VALUES ($1, $2, $3, $4);
   `;
 
-  connect.query(sqlQuery, [name, email, pw, avatar], err => {
+  connect.query(sqlQuery, [name, email, pw, avatar], (err) => {
     if (err) {
       return callback(new Error('Database error while adding new user'));
     }
@@ -23,7 +25,7 @@ post.reviews = (ws_id, review_value, callback) => {
     VALUES ($1, $2);
   `;
 
-  connect.query(sqlQuery, [ws_id, review_value], err => {
+  connect.query(sqlQuery, [ws_id, review_value], (err) => {
     if (err) {
       return callback(new Error('Database error while adding new review'));
     }
@@ -37,7 +39,7 @@ post.votes = (user_id, ws_id, callback) => {
     VALUES ($1, $2);
   `;
 
-  connect.query(sqlQuery, [user_id, ws_id], err => {
+  connect.query(sqlQuery, [user_id, ws_id], (err) => {
     if (err) {
       return callback(new Error('Database error while adding new vote'));
     }
@@ -53,7 +55,7 @@ post.avg_review = (callback) => {
                        WHERE reviews.ws_id = workshops.id);
   `;
 
-  connect.query(sqlQuery, err => {
+  connect.query(sqlQuery, (err) => {
     if (err) {
       return callback(new Error('Database error while updating averages'));
     }

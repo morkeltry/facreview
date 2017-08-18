@@ -124,3 +124,8 @@ label img{
     height: 50px;
     width: 50px
 }
+
+.header__avatar {
+    height: 50px;
+    width: 50px;
+}

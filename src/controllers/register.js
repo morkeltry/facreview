@@ -1,4 +1,5 @@
  const post = require('../model/post');
+ const bcrypt = require('bcryptjs');
 
  exports.post = (req, res) => {
    const name = req.body.name;
@@ -19,16 +20,23 @@
        errors,
      });
    } else {
-       console.log(req.body.avatar)
-     post.users(req.body.name, req.body.email, req.body.password, req.body.avatar, (err, res) => {
-       if (err) { throw err; } else {
-         console.log(res);
-       }
+     console.log(req.body.avatar);
+     bcrypt.genSalt(10, (err, salt) => {
+       bcrypt.hash(req.body.password, salt, (err, hash) => {
+         console.log("hash is:",hash);
+         req.body.password = hash;
+         console.log(req.body.password, 'is new pw');
+         post.users(req.body.name, req.body.email, hash, req.body.avatar, (err, res) => {
+           if (err) { console.log('DBerror', err); } else {
+             console.log(res);
+           }
+         });
+
+         req.flash('success_msg', 'You are registered and can now login');
+
+         res.redirect('/');
+       });
      });
-
-     req.flash('success_msg', 'You are registered and can now login');
-
-     res.redirect('/');
    }
    console.log('errors:', errors);
    console.log('req:', req.body);

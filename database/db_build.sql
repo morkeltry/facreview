@@ -37,8 +37,8 @@ CREATE TABLE votes (
   ws_id INTEGER REFERENCES workshops(id)
 );
 INSERT INTO users (name,email,pw,admin,avatar) VALUES
-  ('Aisha','aisha@fac.com','$2a$10$27F4y6gJ9sHQ.ATD6UhEPuMzqI5/ZaiYY8g3ZP.XTrR5/D2VALIdO','false','avatar1.jpg' ) ,
-  ('Yahia','yahia@fac.com','$2a$10$GYQo2WiMlZFN3ZYaIO57r.sZFR20e.njevmmtWCJajLyzSCgU2HjW','false','avatar2.jpg' ) ;
+  ('Aisha','aisha@fac.com','$2a$10$27F4y6gJ9sHQ.ATD6UhEPuMzqI5/ZaiYY8g3ZP.XTrR5/D2VALIdO','false','pig.png' ) ,
+  ('Yahia','yahia@fac.com','$2a$10$GYQo2WiMlZFN3ZYaIO57r.sZFR20e.njevmmtWCJajLyzSCgU2HjW','false','cow.png' ) ;
 
 INSERT INTO workshops (title,date,gh_link) VALUES
   ('Introduction To Express','2017-08-14','https://github.com/foundersandcoders/introduction-to-express'),
