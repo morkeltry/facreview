@@ -1,12 +1,10 @@
 const connect = require('./db_connection');
 
 const post = {};
-
+// add a new user
 post.users = (name, email, pw, avatar, callback) => {
-  const sqlQuery = `
-    INSERT INTO users (name, email, pw, avatar)
-    VALUES ($1, $2, $3, $4);
-  `;
+  const sqlQuery = `INSERT INTO users (name, email, pw, avatar)
+  VALUES ($1, $2, $3, $4);`;
 
   connect.query(sqlQuery, [name, email, pw, avatar], err => {
     if (err) {
@@ -15,13 +13,10 @@ post.users = (name, email, pw, avatar, callback) => {
     callback(null, 'New user added');
   });
 };
-
+// called from /post-review updates review table
 post.reviews = (ws_id, review_value, callback) => {
-  const sqlQuery = `
-  
-    INSERT INTO reviews (ws_id, review_value)
-    VALUES ($1, $2);
-  `;
+  const sqlQuery = ` INSERT INTO reviews (ws_id, review_value)
+    VALUES ($1, $2);`;
 
   connect.query(sqlQuery, [ws_id, review_value], err => {
     if (err) {
@@ -30,12 +25,10 @@ post.reviews = (ws_id, review_value, callback) => {
     callback(null, 'New review added', ws_id);
   });
 };
-
+// called from /post-review updates votes linking table
 post.votes = (user_id, ws_id, callback) => {
   const sqlQuery = `
-    INSERT INTO votes (user_id, ws_id)
-    VALUES ($1, $2);
-  `;
+    INSERT INTO votes (user_id, ws_id) VALUES ($1, $2);`;
 
   connect.query(sqlQuery, [user_id, ws_id], err => {
     if (err) {
@@ -44,14 +37,13 @@ post.votes = (user_id, ws_id, callback) => {
     callback(null, 'New vote added');
   });
 };
-
+// called from /post-review updates average column in workshops
 post.avg_review = (callback) => {
   const sqlQuery = `
   UPDATE workshops
   SET avg_review = (SELECT AVG(review_value)
                        FROM reviews
-                       WHERE reviews.ws_id = workshops.id);
-  `;
+                       WHERE reviews.ws_id = workshops.id);`;
 
   connect.query(sqlQuery, err => {
     if (err) {
